@@ -1,0 +1,24 @@
+.footer {
+    position: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    color: black;
+    /* background-color: rgb(41, 38, 38); */
+    text-align: center;
+}
+
+.text {
+    padding-left: 1rem;
+    text-decoration: none;
+    /* color: white; */
+    
+}
+
+
+.link {
+    padding-left: 1rem;
+    text-decoration: none;
+    color: black;
+    
+}
