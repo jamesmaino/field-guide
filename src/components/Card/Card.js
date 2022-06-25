@@ -1,9 +1,12 @@
-import classes from "./SpeciesCard.module.css"
+import classes from "./Card.module.css"
 import React from "react";
 
-function SpeciesCard({ setShowSelected, name, introduced, preferred_common_name, count, image }) {
+function Card({ setShowSelected, speciesInfo }) {
+  const {count, introduced, taxon} = speciesInfo
+  const {preferred_common_name, name} = taxon
+  const image = taxon?.default_photo?.medium_url || '' 
   return (
-    <div className={classes.card} onClick={()=>setShowSelected(image)}>
+    <div className={classes.card} onClick={() => setShowSelected(speciesInfo)}>
       <img className={classes.image} src={image} alt="Copyright Placeholder" />
       <div className={classes.count}>
         <img className={classes.eye} src='./img/eye.png' alt="" />
@@ -16,4 +19,4 @@ function SpeciesCard({ setShowSelected, name, introduced, preferred_common_name,
   );
 }
 
-export default SpeciesCard;
+export default Card;

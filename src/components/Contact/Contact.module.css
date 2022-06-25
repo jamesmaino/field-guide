@@ -1,0 +1,16 @@
+.container {
+    text-align: center;
+    margin-right: auto;
+    letter-spacing: 0.1rem;
+    margin-left: auto;
+    max-width: 40rem;
+    line-height: 1.6rem;
+    padding: 2rem;
+}
+
+.heading {
+
+    line-height: 4rem;
+    font-size: 2rem;
+    font-weight: 400;
+}

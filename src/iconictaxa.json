@@ -1,0 +1,34 @@
+[
+    {
+      "title": "Plants",
+      "taxa": "Plantae"
+    },
+    {
+      "title": "Mammals",
+      "taxa": "Mammalia"
+    },
+    {
+      "title": "Birds",
+      "taxa": "Aves"
+    },
+    {
+      "title": "Insects",
+      "taxa": "Insecta"
+    },
+    {
+      "title": "Reptiles",
+      "taxa": "Reptilia"
+    },
+    {
+      "title": "Frogs",
+      "taxa": "Amphibia"
+    },
+    {
+      "title": "Arachnids",
+      "taxa": "Arachnida"
+    },
+    {
+      "title": "Fungi",
+      "taxa": "Fungi"
+    }
+  ]

@@ -3,7 +3,8 @@
 * {
     margin: 0;
     padding: 0;
-    
+    letter-spacing: 0.06rem;
+    line-height: 1.3rem;
     font-family:  'Montserrat', cursive;
     /* background-color: black; */
     -webkit-font-smoothing: antialiased;

@@ -17,6 +17,7 @@
 
 .card {
     flex: 0 1 0;
+    cursor: pointer;
     margin-left: 1rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
