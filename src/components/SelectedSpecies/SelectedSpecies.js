@@ -12,13 +12,12 @@ const SelectedSpecies = ({ showSelected, setShowSelected }) => {
 
     return (
         <div className={styles.absolutebg} onClick={() => { setShowSelected('') }} >
-            <div className={styles.panel} onClick={(e) => { e.stopPropagation() }}>
-                {/* <button className={styles.button17} >{"<"}</button> */}
-                <div className={styles.imagecontainer}>
+            <div className={styles.panel} >
+                <div className={styles.close}>Close</div>
+                <div className={styles.imagecontainer} onClick={(e) => { e.stopPropagation() }}>
                     <img alt={att} className={styles.image} src={image} onClick={openTaxaDetails}/>
                     <div className={styles.attribution}>{att}</div>
                 </div>
-                {/* <button className={styles.button17}>{">"}</button> */}
             </div>
         </div>
     );

@@ -21,7 +21,7 @@ li:active {
     /* padding: 0.5rem 0rem; */
     background-color: #fff;
     color: black;
-    /* box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23); */
+    box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
 }
 
 .brand-name {
@@ -83,6 +83,61 @@ li:active {
     background-color: lightgrey;
 }
 
+.expand-options {
+      /* width:40px;
+      height:40px;
+      border-radius: 20px; */
+    cursor: pointer;
+    align-self: flex-end;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    
+    background-color: white;
+}
+.expand-options:hover{
+    color: #fff;
+    background-color: #616467;
+}
+
+.options {
+    display:flex;
+    justify-content: center;
+    background-color: white;
+
+    box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+    z-index: 1;
+}
+
+.button{
+    outline: none;
+    cursor: pointer;
+    font-size: 1rel;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color,border-color,color,box-shadow,filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 2px;
+    min-width: 1.6rel;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding:10px;
+    margin: 20px;
+    height:1rel;
+    color: #616467;
+    box-shadow: inset 0 0 0 1px #616467;
+    background-color: white;
+}
+
+button:hover{
+    color: #fff;
+    background-color: #616467;
+}
+
+
 @media screen and (max-width: 768px) {
     .hamburger {
         display: block;
@@ -100,19 +155,28 @@ li:active {
 }
 
 @media screen and (max-width: 768px) {
+    .navigation {
+        height:80px;
+    }
+    
     .navigation-menu ul {
         position: absolute;
-        top: 75px;
+        top: 80px;
         left: 0;
         flex-direction: column;
         width: 100%;
         /* height: calc(100vh - 77px); */
-        background-color: none;
-        border-top: 1px solid black;
+        background-color: white;
+        padding-top:2rem;
+        padding-bottom:0.5rem;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        /* border-top: 1px solid black; */
     }
 
     .navigation-menu li {
         text-align: center;
+        line-height: 1.6rem;
         margin: 0;
     }
 
@@ -123,7 +187,7 @@ li:active {
     }
 
     .navigation-menu li:hover {
-        background-color: red;
+        background-color: none;
     }
 }
 
@@ -140,4 +204,31 @@ li:active {
       z-index: -1;
       background-color: none;
     }
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 5px;
+  }
+  
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  
+  .left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+  
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  
+  .down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
   }

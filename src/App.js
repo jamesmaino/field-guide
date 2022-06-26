@@ -7,21 +7,20 @@ import SelectedSpecies from './components/SelectedSpecies/SelectedSpecies';
 import React, { useState, useEffect } from 'react';
 import About from './components/About/About'
 import Contact from './components/Contact/Contact'
+import Options from './components/Options/Options';
 import classes from "./App.module.css"
 
 import iconicTaxa from './iconictaxa.json'
 
 
 // To do 
-// finish navigation
-// add site map
 // remove redundant iconic names
 // make empty card when no obs for given month
 
 // resources
 // https://github.com/jumear/stirfry
 
-let title = "Grampian's Wildlife - A Seasonal Field Guide"
+let title = "Wildlife Field Guide"
 
 function App() {
   useEffect(() => {
@@ -38,6 +37,8 @@ function App() {
   const [month, setMonth] = useState(d.getMonth() + 1)
   const [showSelected, setShowSelected] = useState('')
   const [route, setRoute] = useState('home')
+  const [sortMethod, setSortMethod] = useState('common')
+  const [location, setLocation] = useState('grampians')
 
   const setShowSelected2 = (x) => {
     console.log(x)
@@ -49,16 +50,21 @@ function App() {
       {iconicTaxa.map(x => {
         return (
           <CardHolder
+            key={x.taxa}
+            sortMethod={sortMethod}
             title={x.title}
             taxonName={x.taxa}
             showMore={showMore}
             setShowMore={setShowMore}
             month={month}
-            setShowSelected={setShowSelected2} />
+            setShowSelected={setShowSelected2}
+            location={location}
+            setLocation={setLocation} />
         )
       })}
     </div>
   )
+
 
   const routePage = (route) => {
     switch (route) {
@@ -67,6 +73,13 @@ function App() {
           <>
             {showSelected ? <SelectedSpecies setShowSelected={setShowSelected} showSelected={showSelected} /> : null}
             <Scroll>
+              <Options
+                month={month}
+                setMonth={setMonth}
+                sortMethod={sortMethod}
+                setSortMethod={setSortMethod}
+                location={location}
+                setLocation={setLocation} />
               {speciesList}
               <Footer />
             </Scroll>
@@ -74,11 +87,17 @@ function App() {
         )
       case "about":
         return (
-          <About />
+          <>
+            <About />
+            <Footer />
+          </>
         )
       case "contact":
         return (
-          <Contact />
+          <>
+            <Contact />
+            <Footer />
+          </>
         )
       default:
         return null
@@ -89,7 +108,7 @@ function App() {
   return (
     <div className={classes.App}>
       <NavBar title={title} setRoute={setRoute} />
-      <CustomizedSlider setMonth={setMonth} />
+      {month !== 0 && <CustomizedSlider setMonth={setMonth} />}
       {routePage(route)}
 
     </div>
