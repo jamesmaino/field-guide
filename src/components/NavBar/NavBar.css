@@ -194,7 +194,7 @@ button:hover{
 @media screen and (max-width: 768px) {
     .navigation-menu ul {
       /* previous styles */
-      dipslay: none;
+      display: none;
     }
   }
 

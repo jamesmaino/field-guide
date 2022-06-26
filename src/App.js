@@ -33,8 +33,7 @@ function App() {
     .reduce((o, x) => { return { ...o, [x]: false } }, {})
 
   const [showMore, setShowMore] = useState(iconic_taxon_names);
-  const d = new Date();
-  const [month, setMonth] = useState(d.getMonth() + 1)
+  const [month, setMonth] = useState(0)
   const [showSelected, setShowSelected] = useState('')
   const [route, setRoute] = useState('home')
   const [sortMethod, setSortMethod] = useState('common')
