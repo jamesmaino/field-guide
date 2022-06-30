@@ -20,7 +20,6 @@
     text-shadow: 1px 1px rgba(0, 0, 0, 1);
     margin-top: 0.3rem;
     text-align: center;
-    /* background-color: rgba(0, 0, 0, 0.3); */
     font-weight: 1000;
 
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
@@ -31,7 +30,6 @@
 }
 .card {
     position:relative;
-    flex: 0 1 0;
     cursor: pointer;
     margin-left: 1rem;
     margin-top: 1rem;
@@ -46,9 +44,10 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-
+    overflow: hidden;
+    width:10rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+    
 }
 
 .image {
@@ -57,7 +56,6 @@
     padding: 0;
     margin: 0;
     object-fit: cover;
-    border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .card:hover {

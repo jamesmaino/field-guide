@@ -4,7 +4,7 @@ import Scroll from "./components/Scroll/Scroll";
 import CardHolder from "./components/Cardholder/CardHolder";
 import Footer from './components/Footer/Footer'
 import SelectedSpecies from './components/SelectedSpecies/SelectedSpecies';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import About from './components/About/About'
 import Contact from './components/Contact/Contact'
 import Options from './components/Options/Options';
@@ -27,9 +27,8 @@ function App() {
     document.title = title
   }, []);
 
-  let iconic_taxon_names = [
-    'Plantae', 'Animalia', 'Mollusca', 'Reptilia', 'Aves', 'Amphibia', 'Actinopterygii',
-    'Mammalia', 'Insecta', 'Arachnida', 'Fungi', 'Protozoa', 'Chromista', 'unknown']
+  let iconic_taxon_names = iconicTaxa  
+    .map(x=>x.taxa)
     .reduce((o, x) => { return { ...o, [x]: false } }, {})
 
   const [showMore, setShowMore] = useState(iconic_taxon_names);
@@ -44,24 +43,27 @@ function App() {
     setShowSelected(x)
   }
 
-  const speciesList = (
-    <div>
-      {iconicTaxa.map(x => {
-        return (
-          <CardHolder
-            key={x.taxa}
-            sortMethod={sortMethod}
-            title={x.title}
-            taxonName={x.taxa}
-            showMore={showMore}
-            setShowMore={setShowMore}
-            month={month}
-            setShowSelected={setShowSelected2}
-            location={location}
-            setLocation={setLocation} />
-        )
-      })}
-    </div>
+  const speciesList = useMemo(() =>{
+    return(
+      <div>
+        {iconicTaxa.map(x => {
+          return (
+            <CardHolder
+              key={x.taxa}
+              sortMethod={sortMethod}
+              title={x.title}
+              taxonName={x.taxa}
+              showMore={showMore}
+              setShowMore={setShowMore}
+              month={month}
+              setShowSelected={setShowSelected2}
+              location={location}
+              setLocation={setLocation} />
+          )
+        })}
+      </div>
+    )
+  }, [showMore, location, month, sortMethod]
   )
 
 

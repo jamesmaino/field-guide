@@ -17,7 +17,6 @@ const CardHolder = ({ title, taxonName, sortMethod, month, showMore, setShowMore
     setShowMore({ ...showMore, [key]: !showMore[key] })
   }
 
-
   const sortByRelated = (a, b) => {
     const x = a.taxon.ancestor_ids
     const y = b.taxon.ancestor_ids
@@ -28,7 +27,6 @@ const CardHolder = ({ title, taxonName, sortMethod, month, showMore, setShowMore
     }
   }
 
-
   const sortByCommon = (a, b) => { return b.count - a.count }
 
   const sortFunction = (a, b) => {
@@ -36,15 +34,25 @@ const CardHolder = ({ title, taxonName, sortMethod, month, showMore, setShowMore
     if (sortMethod === 'related') return sortByRelated(a, b)
   }
 
+  const species = (location === 'washoe' ? speciesWashoe : speciesGrampians) 
+  .filter(x => x.taxon.iconic_taxon_name === taxonName)
+  .filter(x => x.month === month)
+  .sort(sortFunction)
+  
+  let taxaShowMore = !showMore[taxonName]
+  let taxaShowLess = showMore[taxonName]
+
+  if (species.length < 6){
+    taxaShowMore = false
+    taxaShowLess = false
+  }
+
   return (
     <div className={classes.cardholder}>
       <div className={classes.holdertitle}>{title}</div>
       <div className={classes.cards}>
-        {!show ? null : <ExpandCard show={show} handleShowMoreClick={() => handleShowMoreClick(taxonName)} />}
-        {(location === 'washoe' ? speciesWashoe : speciesGrampians) 
-          .filter(x => x.taxon.iconic_taxon_name === taxonName)
-          .filter(x => x.month === month)
-          .sort(sortFunction)
+        {taxaShowLess && <ExpandCard show={show} handleShowMoreClick={() => handleShowMoreClick(taxonName)} />}
+        {species
           .filter((x, i) => i < limit)
           .map((speciesInfo, i) => {
             return (
@@ -56,7 +64,7 @@ const CardHolder = ({ title, taxonName, sortMethod, month, showMore, setShowMore
             )
           })
         }
-        {show ? null : <ExpandCard show={show} handleShowMoreClick={() => handleShowMoreClick(taxonName)} />}
+        {taxaShowMore && <ExpandCard show={show} handleShowMoreClick={() => handleShowMoreClick(taxonName)} />}
       </div>
       {/* <button className={classes.button1} onClick={handleShowMoreButton}>{showMoreTaxa ? "See less" : "See all"}</button> */}
     </div>

@@ -12,16 +12,16 @@
       "taxa": "Aves"
     },
     {
-      "title": "Insects",
-      "taxa": "Insecta"
-    },
-    {
       "title": "Reptiles",
       "taxa": "Reptilia"
     },
     {
       "title": "Frogs",
       "taxa": "Amphibia"
+    },
+    {
+      "title": "Insects",
+      "taxa": "Insecta"
     },
     {
       "title": "Arachnids",
