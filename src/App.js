@@ -14,8 +14,7 @@ import iconicTaxa from './iconictaxa.json'
 
 
 // To do 
-// remove redundant iconic names
-// make empty card when no obs for given month
+// CardHolder needs to be refactored for data loading efficiency
 
 // resources
 // https://github.com/jumear/stirfry

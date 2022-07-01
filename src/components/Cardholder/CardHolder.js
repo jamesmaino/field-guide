@@ -2,6 +2,8 @@ import classes from "./CardHolder.module.css"
 import React from "react";
 import speciesGrampians from "../../data-grampians";
 import speciesWashoe from "../../data-washoe.json";
+import speciesLubeck from "../../data-lubeck.json";
+
 import ExpandCard from "../ExpandCard/ExpandCard";
 import Card from "../Card/Card"
 
@@ -33,11 +35,21 @@ const CardHolder = ({ title, taxonName, sortMethod, month, showMore, setShowMore
     if (sortMethod === 'common' ) return sortByCommon(a, b)
     if (sortMethod === 'related') return sortByRelated(a, b)
   }
+  console.log(location)
+  let species
+  if(location === 'washoe') {
+    console.log("WASHOE  SELECTED")
+    species = speciesWashoe
+  }
+  if(location === 'grampians') {
+    console.log("GRAMPIANS  SELECTED")
+    species = speciesGrampians
+  }
+  if(location === 'lubeck') {
+    console.log("LUBECK SELECTED")
+    species = speciesLubeck
+  } 
 
-  const species = (location === 'washoe' ? speciesWashoe : speciesGrampians) 
-  .filter(x => x.taxon.iconic_taxon_name === taxonName)
-  .filter(x => x.month === month)
-  .sort(sortFunction)
   
   let taxaShowMore = !showMore[taxonName]
   let taxaShowLess = showMore[taxonName]
@@ -53,6 +65,9 @@ const CardHolder = ({ title, taxonName, sortMethod, month, showMore, setShowMore
       <div className={classes.cards}>
         {taxaShowLess && <ExpandCard show={show} handleShowMoreClick={() => handleShowMoreClick(taxonName)} />}
         {species
+         .filter(x => x.taxon.iconic_taxon_name === taxonName)
+         .filter(x => x.month === month)
+         .sort(sortFunction)
           .filter((x, i) => i < limit)
           .map((speciesInfo, i) => {
             return (

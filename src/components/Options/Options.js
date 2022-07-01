@@ -1,4 +1,5 @@
 import styles from "./Options.module.css"
+import Dropdown from "./Dropdown"
 
 const Options = ({ month, setMonth, sortMethod, setSortMethod, location, setLocation }) => {
     const toggleSeasonal = () => {
@@ -7,9 +8,6 @@ const Options = ({ month, setMonth, sortMethod, setSortMethod, location, setLoca
     }
     const toggleSort = () => {
         setSortMethod(sortMethod === 'related' ? 'common' : 'related')
-    }
-    const toggleLocation = () => {
-        setLocation(location === 'grampians' ? 'washoe' : 'grampians')
     }
 
     const Option = ({isChecked, toggle, label}) => {
@@ -27,9 +25,9 @@ const Options = ({ month, setMonth, sortMethod, setSortMethod, location, setLoca
     return (
         <div>
             <div className={styles.optionsContainer}>
+                <Dropdown location={location} setLocation={setLocation}/>
                 <Option label="Filter by month" isChecked={month!==0} toggle={toggleSeasonal}/>
                 <Option label="Sort by relatedness" isChecked={sortMethod==='related'} toggle={toggleSort}/>
-                <Option label="Set location to Washoe" isChecked={location==='washoe'} toggle={toggleLocation}/>
             </div>
         </div>
     )
