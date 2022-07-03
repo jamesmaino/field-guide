@@ -10,13 +10,15 @@ const SelectedSpecies = ({ showSelected, setShowSelected }) => {
         window.open(taxonLink, '_blank')
     }
 
-    const license = showSelected.taxon.default_photo.license_code
+    const license = showSelected.taxon.default_photo.license_code;
     const [images, setImages] = useState([])
     const [imgCounter, setImgCounter] = useState(0)
     const [image, setImage] = useState({ url: license === null ? './img/loading.gif' : def_img, att: def_att })
     const photosUrl = `https://api.inaturalist.org/v1/observations?photos=true&licensed=true&photo_licensed=true&license=cc-by%2Ccc-by-nc%2Ccc-by-nd%2Ccc-by-sa%2Ccc-by-nc-nd%2Ccc-by-nc-sa%2Ccc0&photo_license=cc-by%2Ccc-by-nc%2Ccc-by-nd%2Ccc-by-sa%2Ccc-by-nc-nd%2Ccc-by-nc-sa%2Ccc0&taxon_id=${taxonId}&quality_grade=research&page=1&per_page=10&order=desc&order_by=votes`
+    
     useEffect(
         () => {
+
             console.log('FETCHING IMAGES')
             fetch(photosUrl)
                 .then(res => res.json())
@@ -41,12 +43,18 @@ const SelectedSpecies = ({ showSelected, setShowSelected }) => {
 
             console.log('IMAGES FETCHED')
                     setImages(photos)
+                    // preload images for quick transition
+                    for (const image of photos) {
+                        const imageElement = new Image();
+                        imageElement.src = image.url;
+                    }
                 })
-                return ()=>{console.log('clean up')}
+                return ()=>{console.log('clean up (placeholder)')}
         },
 
-        []
+        [license, photosUrl, showSelected]
     )
+
 
     const incrementImgCounter = (increment) => {
         const i = imgCounter + increment

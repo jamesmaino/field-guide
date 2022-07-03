@@ -1,16 +1,12 @@
 import classes from "./CardHolder.module.css"
 import React from "react";
-import speciesGrampians from "../../data-grampians";
-import speciesWashoe from "../../data-washoe.json";
-import speciesLubeck from "../../data-lubeck.json";
-
 import ExpandCard from "../ExpandCard/ExpandCard";
 import Card from "../Card/Card"
 
 
 // console.log(species)
 
-const CardHolder = ({ title, taxonName, sortMethod, month, showMore, setShowMore, setShowSelected, location, setLocation }) => {
+const CardHolder = ({ title, taxonName, sortMethod, month, showMore, setShowMore, speciesData, setSpeciesData, setShowSelected, location, setLocation }) => {
   let show = showMore[taxonName]
   let limit = show ? 1000 : 5
 
@@ -35,20 +31,8 @@ const CardHolder = ({ title, taxonName, sortMethod, month, showMore, setShowMore
     if (sortMethod === 'common' ) return sortByCommon(a, b)
     if (sortMethod === 'related') return sortByRelated(a, b)
   }
-  console.log(location)
-  let species
-  if(location === 'washoe') {
-    console.log("WASHOE  SELECTED")
-    species = speciesWashoe
-  }
-  if(location === 'grampians') {
-    console.log("GRAMPIANS  SELECTED")
-    species = speciesGrampians
-  }
-  if(location === 'lubeck') {
-    console.log("LUBECK SELECTED")
-    species = speciesLubeck
-  } 
+  
+  const species = speciesData
 
   
   let taxaShowMore = !showMore[taxonName]

@@ -1,14 +1,16 @@
 import "./Dropdown.css"
 
-const Dropdown = ({location, setLocation }) => {
-
+const Dropdown = ({locations, location, setLocation }) => {
+    const DropDownItem = ({loc, title}) => {
+        return(
+            <div onClick={()=>setLocation(loc)}>{title}</div>
+        )
+    }
     return (
         <div className="dropdown">
-            <button className="dropbtn">{location.toUpperCase()}</button>
+            <button className="dropbtn">{location.slug.toUpperCase()}</button>
             <div className="dropdown-content">
-                <div onClick={()=>setLocation("washoe")}>Washoe Valley</div>
-                <div onClick={()=>setLocation("grampians")}>Grampians/Gariwerd</div>
-                <div onClick={()=>setLocation("lubeck")}>Lubeck</div>
+              {locations.map(loc => <DropDownItem key={loc.slug} loc={loc} title={loc.title}/>)}
             </div>
         </div>
     )

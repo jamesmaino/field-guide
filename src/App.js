@@ -8,39 +8,52 @@ import React, { useState, useEffect, useMemo } from 'react';
 import About from './components/About/About'
 import Contact from './components/Contact/Contact'
 import Options from './components/Options/Options';
+import Map from "./components/Map/Map"
 import classes from "./App.module.css"
 
+import getiNatData from "./getiNatData"
+
 import iconicTaxa from './iconictaxa.json'
+import speciesGrampians from "./data-grampians";
+import locations from "./locations.json";
 
 
 // To do 
 // CardHolder needs to be refactored for data loading efficiency
+// map location
+
 
 // resources
 // https://github.com/jumear/stirfry
 
-let title = "Wildlife Field Guide"
 
 function App() {
-  useEffect(() => {
-    document.title = title
-  }, []);
-
+  
   let iconic_taxon_names = iconicTaxa  
-    .map(x=>x.taxa)
-    .reduce((o, x) => { return { ...o, [x]: false } }, {})
-
+  .map(x=>x.taxa)
+  .reduce((o, x) => { return { ...o, [x]: false } }, {})
+  
   const [showMore, setShowMore] = useState(iconic_taxon_names);
   const [month, setMonth] = useState(0)
   const [showSelected, setShowSelected] = useState('')
   const [route, setRoute] = useState('home')
   const [sortMethod, setSortMethod] = useState('common')
-  const [location, setLocation] = useState('grampians')
-
+  const [location, setLocation] = useState(locations[0])
+  const [speciesData, setSpeciesData] = useState(speciesGrampians)
+  
+  useEffect(() => {
+    console.log('location', location)
+    document.title = location?.title
+  }, [location]);
+  
   const setShowSelected2 = (x) => {
     console.log(x)
     setShowSelected(x)
   }
+
+  useEffect(
+    ()=>getiNatData(setSpeciesData, location.bbox)
+  ,[location])
 
   const speciesList = useMemo(() =>{
     return(
@@ -54,6 +67,8 @@ function App() {
               taxonName={x.taxa}
               showMore={showMore}
               setShowMore={setShowMore}
+              speciesData={speciesData}
+              setSpeciesData={setSpeciesData}
               month={month}
               setShowSelected={setShowSelected2}
               location={location}
@@ -62,9 +77,8 @@ function App() {
         })}
       </div>
     )
-  }, [showMore, location, month, sortMethod]
+  }, [showMore, speciesData, location, month, sortMethod]
   )
-
 
   const routePage = (route) => {
     switch (route) {
@@ -78,6 +92,7 @@ function App() {
                 setMonth={setMonth}
                 sortMethod={sortMethod}
                 setSortMethod={setSortMethod}
+                locations={locations}
                 location={location}
                 setLocation={setLocation} />
               {speciesList}
@@ -88,7 +103,8 @@ function App() {
       case "about":
         return (
           <>
-            <About />
+            <Map bbox={location.bbox}/>
+            <About location={location}/>
             <Footer />
           </>
         )
@@ -107,7 +123,7 @@ function App() {
 
   return (
     <div className={classes.App}>
-      <NavBar title={title} setRoute={setRoute} />
+      <NavBar title={location.title + " Field Guide"} setRoute={setRoute} />
       {month !== 0 && <CustomizedSlider setMonth={setMonth} />}
       {routePage(route)}
 

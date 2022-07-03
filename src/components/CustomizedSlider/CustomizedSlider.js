@@ -93,7 +93,7 @@ const d = new Date();
 export default function CustomizedSlider({ setMonth }) {
 
     const changeMonth = (event, value) => {
-        console.log(value)
+        console.log("month:", value)
         setMonth(value);
     };
 

@@ -1,0 +1,42 @@
+[
+    {
+        "title": "Grampians (Gariwerd) National Park",
+        "slug": "grampians",
+        "bbox": {
+            "nelng": "142.731699",
+            "nelat": "-36.856545",
+            "swlng": "142.139962",
+            "swlat": "-37.622101"
+        }
+    },
+    {
+        "title": "Washoe Valley",
+        "slug": "washoe",
+        "bbox": {
+            "nelng": "-119.7563705",
+            "nelat": "  39.3365610",
+            "swlng": "-119.8420594",
+            "swlat": "  39.2232581"
+        }
+    },
+    {
+        "title": "Lubeck (Tony's place)",
+        "slug": "lubeck",
+        "bbox": {
+            "nelng": "142.477557",
+            "nelat": "-36.688805",
+            "swlng": "142.415059",
+            "swlat": "-36.744414"
+        }
+    },
+    {
+        "title": "Diamond Creek",
+        "slug": "diamond-creek",
+        "bbox": {
+            "nelng": "145.179873",
+            "nelat": "-37.650102",
+            "swlng": "145.112324",
+            "swlat": "-37.699453"
+        }
+    }
+]
