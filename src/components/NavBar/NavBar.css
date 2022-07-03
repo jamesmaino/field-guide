@@ -201,7 +201,7 @@ button:hover{
   @media screen and (max-width: 768px) {
     .navigation-menu.expanded ul {
       display: flex;
-      z-index: -1;
+      z-index: 1;
       background-color: none;
     }
 }
