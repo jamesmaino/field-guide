@@ -1,5 +1,5 @@
 import './Map.css';
-import { MapContainer, TileLayer, Rectangle, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Rectangle} from 'react-leaflet'
 
 const Map = ({ bbox }) => {
     const xy = Object.values(bbox).map(x => Number(x))
@@ -19,11 +19,6 @@ const Map = ({ bbox }) => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <Rectangle bounds={rectangle} pathOptions={blackOptions} />
-            {/* <Marker position={position}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker> */}
         </MapContainer>
     )
 }

@@ -1,67 +1,55 @@
-.count {
-    justify-self: flex-end;
-    color: grey;
-}
-
-.eye {
-    height: 0.6rem;
-    opacity: 0.7;
-    padding-right: 0.2rem;
-    z-index: -1;
-}
-
-.introduced {
-    position: absolute;
-    right:50%;
-    font-size: 0.9rem;;
-    transform: translateX(50%);
-    padding: 0.2rem 0.8rem 0 0.8rem;
-    color: white;
-    text-shadow: 1px 1px rgba(0, 0, 0, 1);
-    margin-top: 0.3rem;
-    text-align: center;
-    font-weight: 1000;
-
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-}
-
-.capitalize {
-    text-transform: capitalize;
-}
 .card {
-    position:relative;
-    cursor: pointer;
+    position: relative;
+    /* cursor: pointer; */
     margin-left: 1rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    width: 16rem;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     color: black;
-    border-radius: 5%;
     display: relative;
     background-color: white;
     text-align: center;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    /* justify-content: space-between; */
+    /* align-items: center; */
     overflow: hidden;
-    width:10rem;
+    width: 12%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    
-}
 
-.image {
-    width: 10rem;
-    height: 10rem;
-    padding: 0;
-    margin: 0;
-    object-fit: cover;
 }
 
 .card:hover {
-    transform: scale(1.05);
+    cursor: pointer;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
 }
 
-.card>* {
-    padding-bottom: 0.3rem;
+@media screen and (max-width:1466px) {
+    .card {
+        width: 12%;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .card {
+        width: 25%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .card {
+        width: 35%;
+    }
+}
+
+
+@media screen and (max-width:568px) {
+    .card {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .card {
+        width: 80%;
+    }
 }

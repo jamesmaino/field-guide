@@ -1,5 +1,5 @@
 import styles from "./Options.module.css"
-import Dropdown from "./Dropdown"
+// import Dropdown from "./Dropdown"
 
 const Options = ({ month, setMonth, sortMethod, setSortMethod, locations, location, setLocation }) => {
     const toggleSeasonal = () => {
@@ -25,7 +25,7 @@ const Options = ({ month, setMonth, sortMethod, setSortMethod, locations, locati
     return (
         <div>
             <div className={styles.optionsContainer}>
-                <Dropdown locations={locations} location={location} setLocation={setLocation}/>
+                {/* <Dropdown locations={locations} location={location} setLocation={setLocation}/> */}
                 <Option label="Filter by month" isChecked={month!==0} toggle={toggleSeasonal}/>
                 <Option label="Sort by relatedness" isChecked={sortMethod==='related'} toggle={toggleSort}/>
             </div>

@@ -42,7 +42,6 @@ const getiNatData = (setData, bbox) => {
                 .catch(e => console.log(e))
         )
     ).then(data => {
-        console.log(data)
         const out = data.reduce((o,x)=>([...o, ...x]),[])
         setData(out); 
         console.log("returning inat promise")

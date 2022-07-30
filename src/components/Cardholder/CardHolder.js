@@ -1,15 +1,15 @@
 import classes from "./CardHolder.module.css"
-import React from "react";
+import React, { memo } from "react";
 import ExpandCard from "../ExpandCard/ExpandCard";
-import Card from "../Card/Card"
-
+import CardContents from "../CardContents/CardContents"
+import Card from "../Card/Card";
 
 // console.log(species)
 
-const CardHolder = ({ title, taxonName, sortMethod, month, showMore, setShowMore, speciesData, setSpeciesData, setShowSelected, location, setLocation }) => {
+const CardHolder = ({ title, taxonName, sortMethod, month, showMore, setShowMore, speciesData }) => {
+
   let show = showMore[taxonName]
   let limit = show ? 1000 : 5
-
   const handleShowMoreClick = (key) => {
     // console.log(showMore)
     setShowMore({ ...showMore, [key]: !showMore[key] })
@@ -28,44 +28,65 @@ const CardHolder = ({ title, taxonName, sortMethod, month, showMore, setShowMore
   const sortByCommon = (a, b) => { return b.count - a.count }
 
   const sortFunction = (a, b) => {
-    if (sortMethod === 'common' ) return sortByCommon(a, b)
+    if (sortMethod === 'common') return sortByCommon(a, b)
     if (sortMethod === 'related') return sortByRelated(a, b)
   }
-  
+
   const species = speciesData
 
-  
   let taxaShowMore = !showMore[taxonName]
   let taxaShowLess = showMore[taxonName]
 
-  if (species.length < 6){
+  const nSpecies = species
+    .filter(x => x.taxon.iconic_taxon_name === taxonName)
+    .filter(x => x.month === month)
+    .length
+
+  let holderTitle = ''
+  if (title==='Plants' && nSpecies === 0 ) {
+    holderTitle = <img src='/img/loading.gif' alt="Loading species..." />
+  } 
+  if (nSpecies > 0) {
+    holderTitle = title
+  }
+
+  if (nSpecies < 6) {
     taxaShowMore = false
     taxaShowLess = false
   }
 
+  const CardList = memo(() => {
+    return (
+      <>
+        {
+          species
+            .filter(x => x.taxon.iconic_taxon_name === taxonName)
+            .filter(x => x.month === month)
+            .sort(sortFunction)
+            .filter((x, i) => i < limit)
+            .map((speciesInfo, i) => {
+              return (
+                <Card key={speciesInfo.taxon.name}>
+                  <CardContents
+                    key={speciesInfo.taxon.name}
+                    speciesInfo={speciesInfo}
+                  />
+                </Card>
+              )
+            })
+        }
+      </>
+    )
+  })
+
   return (
     <div className={classes.cardholder}>
-      <div className={classes.holdertitle}>{title}</div>
+      <div className={classes.holdertitle}>{holderTitle}</div>
       <div className={classes.cards}>
         {taxaShowLess && <ExpandCard show={show} handleShowMoreClick={() => handleShowMoreClick(taxonName)} />}
-        {species
-         .filter(x => x.taxon.iconic_taxon_name === taxonName)
-         .filter(x => x.month === month)
-         .sort(sortFunction)
-          .filter((x, i) => i < limit)
-          .map((speciesInfo, i) => {
-            return (
-              <Card
-                setShowSelected={setShowSelected}
-                key={speciesInfo.taxon.name}
-                speciesInfo={speciesInfo}
-              />
-            )
-          })
-        }
+        <CardList />
         {taxaShowMore && <ExpandCard show={show} handleShowMoreClick={() => handleShowMoreClick(taxonName)} />}
       </div>
-      {/* <button className={classes.button1} onClick={handleShowMoreButton}>{showMoreTaxa ? "See less" : "See all"}</button> */}
     </div>
   )
 }

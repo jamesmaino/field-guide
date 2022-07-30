@@ -1,5 +1,7 @@
 .cardholder {
+    width:100%;
     display: flex;
+    margin: rem;
     margin: 0 auto;
     flex-direction: column;
     justify-content: center;
@@ -7,6 +9,7 @@
 }
 
 .cards {  
+    width:100%;
     margin: 0;
     padding: 0;
     display: flex;
@@ -17,18 +20,18 @@
 
 .holdertitle {
     padding: 0.5rem  1rem 0.5rem 1rem;
-    margin-top: 2rem;
+    margin-top: 0rem;
     font:bold;
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: 400;
     text-align: center;
     border-color: rgba(0,0,0,.1);
-    border-style: solid;
+    /* border-style: solid;  */
     border-width: 1px;
     border-radius: 1rem;
     color: black;
     display: flex;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 
